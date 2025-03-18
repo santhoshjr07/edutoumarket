@@ -24,7 +24,7 @@ import { Plus } from "lucide-react";
 
 const formSchema = z.object({
   category: z.string().min(1, "Category is required"),
-  amount: z.string().transform((val) => Number(val)),
+  amount: z.coerce.number().min(0, "Amount must be positive"),
 });
 
 export function AddBudgetDialog() {
@@ -32,7 +32,7 @@ export function AddBudgetDialog() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       category: "",
-      amount: "",
+      amount: 0,
     },
   });
 
