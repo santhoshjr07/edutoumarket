@@ -8,13 +8,13 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Search, ShoppingCart, Plus, Minus, X } from "lucide-react";
 
-// Sample product data
+// Sample product data with real image URLs
 const products = [
   {
     id: 1,
     name: "Organic Bananas",
     price: 2.99,
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?q=80&w=500&auto=format",
     category: "Fruits",
     description: "Fresh organic bananas, perfect for smoothies or a healthy snack."
   },
@@ -22,7 +22,7 @@ const products = [
     id: 2,
     name: "Whole Grain Bread",
     price: 3.49,
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1598373182133-52452f7691ef?q=80&w=500&auto=format",
     category: "Bakery",
     description: "Freshly baked whole grain bread, rich in fiber and nutrients."
   },
@@ -30,7 +30,7 @@ const products = [
     id: 3,
     name: "Free Range Eggs",
     price: 4.99,
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1598965675045-45c67c1cfc47?q=80&w=500&auto=format",
     category: "Dairy",
     description: "Farm fresh free range eggs from ethically raised chickens."
   },
@@ -38,7 +38,7 @@ const products = [
     id: 4,
     name: "Grass-Fed Beef",
     price: 12.99,
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1551135049-8a33b5883817?q=80&w=500&auto=format",
     category: "Meat",
     description: "Premium grass-fed beef, high in omega-3 fatty acids."
   },
@@ -46,7 +46,7 @@ const products = [
     id: 5,
     name: "Organic Spinach",
     price: 2.49,
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?q=80&w=500&auto=format",
     category: "Vegetables",
     description: "Fresh, locally grown organic spinach, packed with nutrients."
   },
@@ -54,7 +54,7 @@ const products = [
     id: 6,
     name: "Greek Yogurt",
     price: 3.99,
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1571212515416-fca325e39a36?q=80&w=500&auto=format",
     category: "Dairy",
     description: "Creamy Greek yogurt, high in protein and probiotics."
   },
@@ -62,7 +62,7 @@ const products = [
     id: 7,
     name: "Orange Juice",
     price: 4.49,
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=80&w=500&auto=format",
     category: "Beverages",
     description: "Freshly squeezed orange juice, rich in vitamin C."
   },
@@ -70,7 +70,7 @@ const products = [
     id: 8,
     name: "Avocados",
     price: 5.99,
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?q=80&w=500&auto=format",
     category: "Fruits",
     description: "Perfectly ripe avocados, great for salads or guacamole."
   }
