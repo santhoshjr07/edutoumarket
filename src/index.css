@@ -8,12 +8,12 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 24 95% 50%; /* Changed to orange */
+    --popover-foreground: 0 0% 10%;
+    --primary: 24 95% 50%; /* Orange */
     --primary-foreground: 0 0% 100%; /* White text on orange background */
     --secondary: 30 100% 97%; /* Light orange for secondary */
     --secondary-foreground: 24 95% 40%; /* Dark orange text on light orange background */
@@ -49,6 +49,40 @@
     @apply animate-fade-in;
   }
 
+  /* Orange theme specific styles */
+  .orange-gradient {
+    @apply bg-gradient-to-r from-orange-500 to-orange-400;
+  }
+  
+  .orange-card {
+    @apply border-orange-200 shadow-orange-100/50;
+  }
+  
+  /* Edutou specific components */
+  .product-card {
+    @apply bg-white rounded-lg border border-orange-100 shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02];
+  }
+  
+  .category-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800;
+  }
+  
+  .price-tag {
+    @apply text-lg font-bold text-orange-600;
+  }
+  
+  .cart-item {
+    @apply flex items-center gap-3 p-3 rounded-md border border-orange-100 bg-white;
+  }
+  
+  .quantity-control {
+    @apply flex items-center gap-2 text-sm;
+  }
+  
+  .search-bar {
+    @apply w-full px-4 py-3 rounded-full border border-orange-200 focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50;
+  }
+
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -58,14 +92,5 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-  /* Orange theme specific styles */
-  .orange-gradient {
-    @apply bg-gradient-to-r from-orange-500 to-orange-400;
-  }
-  
-  .orange-card {
-    @apply border-orange-200 shadow-orange-100/50;
   }
 }
