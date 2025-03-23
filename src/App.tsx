@@ -9,6 +9,9 @@ import Transactions from "./pages/Transactions";
 import Budget from "./pages/Budget";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import Products from "./pages/Products";
+import Orders from "./pages/Orders";
+import Favorites from "./pages/Favorites";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,6 +33,9 @@ const App = () => (
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/budget" element={<Budget />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/favorites" element={<Favorites />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
