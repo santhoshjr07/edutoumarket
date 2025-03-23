@@ -9,7 +9,8 @@ import {
   PlusCircle, 
   MinusCircle,
   Search,
-  Filter
+  Filter,
+  ShoppingBag
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { MainNav } from "@/components/MainNav";
@@ -158,7 +159,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
+    <div className="min-h-screen bg-orange-50/30">
       <MainNav />
       
       <motion.div 
@@ -173,8 +174,8 @@ const Index = () => {
           className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
         >
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Edutou Grocery</h1>
-            <p className="text-gray-500">Fresh products delivered to your door</p>
+            <h1 className="text-3xl font-bold text-orange-600">Edutou Grocery</h1>
+            <p className="text-orange-700/70">Fresh products delivered to your door</p>
           </div>
           
           <motion.div 
@@ -184,13 +185,13 @@ const Index = () => {
           >
             <Button 
               size="lg" 
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 orange-gradient text-white"
               onClick={() => setShowCart(!showCart)}
             >
               <ShoppingCart className="w-5 h-5" />
               <span>Cart</span>
               {cartItemCount > 0 && (
-                <Badge variant="secondary" className="ml-1">{cartItemCount}</Badge>
+                <Badge variant="secondary" className="ml-1 bg-white text-orange-600">{cartItemCount}</Badge>
               )}
             </Button>
             
@@ -199,17 +200,20 @@ const Index = () => {
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="absolute right-0 mt-2 w-80 bg-white shadow-xl rounded-lg z-50"
+                className="absolute right-0 mt-2 w-80 bg-white shadow-xl rounded-lg z-50 orange-card"
               >
                 <div className="p-4 max-h-96 overflow-auto">
-                  <h3 className="font-bold text-lg mb-3">Your Cart</h3>
+                  <h3 className="font-bold text-lg mb-3 text-orange-600">Your Cart</h3>
                   
                   {cart.length === 0 ? (
-                    <p className="text-gray-500">Your cart is empty</p>
+                    <div className="flex flex-col items-center justify-center py-6 text-orange-400">
+                      <ShoppingBag className="w-12 h-12 mb-2 opacity-50" />
+                      <p>Your cart is empty</p>
+                    </div>
                   ) : (
                     <>
                       {cart.map(item => (
-                        <div key={item.id} className="flex items-center justify-between py-2 border-b">
+                        <div key={item.id} className="flex items-center justify-between py-2 border-b border-orange-100">
                           <div className="flex items-center">
                             <img 
                               src={item.image} 
@@ -217,8 +221,8 @@ const Index = () => {
                               className="w-12 h-12 object-cover rounded"
                             />
                             <div className="ml-3">
-                              <p className="font-medium">{item.name}</p>
-                              <p className="text-sm text-gray-500">${item.price.toFixed(2)} x {item.quantity}</p>
+                              <p className="font-medium text-gray-800">{item.name}</p>
+                              <p className="text-sm text-orange-600">${item.price.toFixed(2)} x {item.quantity}</p>
                             </div>
                           </div>
                           <div className="flex items-center">
@@ -226,14 +230,16 @@ const Index = () => {
                               variant="ghost" 
                               size="icon" 
                               onClick={() => removeFromCart(item.id)}
+                              className="text-orange-500 hover:text-orange-700 hover:bg-orange-50"
                             >
                               <MinusCircle className="w-4 h-4" />
                             </Button>
-                            <span className="mx-1">{item.quantity}</span>
+                            <span className="mx-1 text-gray-800">{item.quantity}</span>
                             <Button 
                               variant="ghost" 
                               size="icon" 
                               onClick={() => addToCart(item)}
+                              className="text-orange-500 hover:text-orange-700 hover:bg-orange-50"
                             >
                               <PlusCircle className="w-4 h-4" />
                             </Button>
@@ -241,12 +247,12 @@ const Index = () => {
                         </div>
                       ))}
                       
-                      <div className="pt-4 border-t mt-4">
-                        <div className="flex justify-between font-bold">
+                      <div className="pt-4 border-t border-orange-100 mt-4">
+                        <div className="flex justify-between font-bold text-gray-800">
                           <span>Total:</span>
-                          <span>${cartTotal.toFixed(2)}</span>
+                          <span className="text-orange-600">${cartTotal.toFixed(2)}</span>
                         </div>
-                        <Button className="w-full mt-4" asChild>
+                        <Button className="w-full mt-4 orange-gradient" asChild>
                           <Link to="/checkout">Proceed to Checkout</Link>
                         </Button>
                       </div>
@@ -261,10 +267,10 @@ const Index = () => {
         {/* Search and Filter */}
         <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-4">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-3 h-4 w-4 text-orange-400" />
             <Input
               placeholder="Search products..."
-              className="pl-10"
+              className="pl-10 border-orange-200 focus-visible:ring-orange-400"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -274,7 +280,11 @@ const Index = () => {
               <Badge 
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
-                className="cursor-pointer capitalize"
+                className={`cursor-pointer capitalize ${
+                  selectedCategory === category 
+                    ? "bg-orange-500 hover:bg-orange-600" 
+                    : "text-orange-500 border-orange-200 hover:border-orange-400"
+                }`}
                 onClick={() => setSelectedCategory(category)}
               >
                 {category}
@@ -295,19 +305,21 @@ const Index = () => {
               whileHover={{ y: -5 }}
               className="h-full"
             >
-              <Card className="overflow-hidden h-full flex flex-col">
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-48 object-cover"
-                />
+              <Card className="overflow-hidden h-full flex flex-col orange-card shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="relative">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-48 object-cover"
+                  />
+                  <Badge className="absolute top-2 right-2 capitalize bg-orange-500">{product.category}</Badge>
+                </div>
                 <div className="p-4 flex flex-col flex-grow">
-                  <Badge className="self-start mb-2 capitalize">{product.category}</Badge>
-                  <h3 className="font-bold">{product.name}</h3>
-                  <p className="text-lg font-bold text-primary mt-1">${product.price.toFixed(2)}</p>
-                  <p className="text-gray-500 text-sm mt-2 mb-4 flex-grow">{product.description}</p>
+                  <h3 className="font-bold text-gray-800">{product.name}</h3>
+                  <p className="text-lg font-bold text-orange-600 mt-1">${product.price.toFixed(2)}</p>
+                  <p className="text-gray-600 text-sm mt-2 mb-4 flex-grow">{product.description}</p>
                   <Button 
-                    className="w-full mt-auto" 
+                    className="w-full mt-auto bg-orange-500 hover:bg-orange-600 text-white" 
                     onClick={() => addToCart(product)}
                   >
                     Add to Cart
@@ -321,22 +333,22 @@ const Index = () => {
         {/* Featured Sections */}
         <motion.section variants={itemVariants} className="space-y-4">
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-semibold text-gray-900">Weekly Deals</h2>
-            <Button variant="ghost" className="text-primary" asChild>
+            <h2 className="text-xl font-semibold text-orange-700">Weekly Deals</h2>
+            <Button variant="ghost" className="text-orange-500 hover:text-orange-700" asChild>
               <Link to="/deals">
                 View All <ChevronRight className="w-4 h-4 ml-1" />
               </Link>
             </Button>
           </div>
           
-          <Card className="p-6">
-            <h3 className="text-lg font-semibold mb-4">Get 15% off your first order!</h3>
-            <p className="text-gray-500 mb-4">
+          <Card className="p-6 bg-gradient-to-r from-orange-100 to-orange-50 border-orange-200">
+            <h3 className="text-lg font-semibold mb-4 text-orange-700">Get 15% off your first order!</h3>
+            <p className="text-orange-700/70 mb-4">
               Sign up for our newsletter and get exclusive deals delivered to your inbox.
             </p>
             <div className="flex gap-2">
-              <Input placeholder="Your email" className="flex-grow" />
-              <Button>Subscribe</Button>
+              <Input placeholder="Your email" className="flex-grow border-orange-200" />
+              <Button className="bg-orange-500 hover:bg-orange-600 text-white">Subscribe</Button>
             </div>
           </Card>
         </motion.section>
