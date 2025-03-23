@@ -25,7 +25,7 @@ export function MainNav() {
             transition={{ duration: 0.3 }}
           >
             <ShoppingBag className="mr-2 h-6 w-6" /> 
-            EDUTOU
+            EDUTOU BASKET
           </motion.div>
           
           <div className="flex items-center gap-6">

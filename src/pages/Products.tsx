@@ -1,4 +1,3 @@
-
 import { MainNav } from "@/components/MainNav";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,7 +7,6 @@ import { motion } from "framer-motion";
 import { Search, Filter, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 
-// Sample product data with real image URLs
 const products = [
   {
     id: 1,
@@ -76,14 +74,12 @@ const products = [
   }
 ];
 
-// Get unique categories
 const categories = ["All", ...new Set(products.map(product => product.category))];
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Filter products based on search and category
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                          product.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -91,7 +87,6 @@ const Products = () => {
     return matchesSearch && matchesCategory;
   });
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -115,7 +110,6 @@ const Products = () => {
     <div className="min-h-screen bg-secondary/40">
       <MainNav />
       
-      {/* Products Title Section */}
       <motion.div 
         className="orange-gradient text-white py-12 px-6 text-center"
         initial={{ opacity: 0, y: -20 }}
@@ -140,7 +134,6 @@ const Products = () => {
         </motion.p>
       </motion.div>
 
-      {/* Search and Filter Section */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div className="relative flex-1 max-w-xl">
@@ -168,7 +161,6 @@ const Products = () => {
           </div>
         </div>
 
-        {/* Products Grid */}
         <motion.div 
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
           variants={containerVariants}
@@ -211,12 +203,11 @@ const Products = () => {
         )}
       </div>
       
-      {/* Footer */}
       <footer className="bg-foreground text-background py-12 mt-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Edutou Grocery</h3>
+              <h3 className="text-xl font-bold mb-4">Edutou Basket</h3>
               <p className="text-background/80">
                 Your local grocery store offering fresh and organic products.
               </p>
@@ -239,7 +230,7 @@ const Products = () => {
             </div>
           </div>
           <div className="border-t border-background/20 mt-8 pt-8 text-center text-background/60">
-            <p>&copy; {new Date().getFullYear()} Edutou Grocery. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Edutou Basket. All rights reserved.</p>
           </div>
         </div>
       </footer>

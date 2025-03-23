@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { MainNav } from "@/components/MainNav";
 import { Button } from "@/components/ui/button";
@@ -8,7 +7,6 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Search, ShoppingCart, Plus, Minus, X } from "lucide-react";
 
-// Sample product data with real image URLs
 const products = [
   {
     id: 1,
@@ -76,7 +74,6 @@ const products = [
   }
 ];
 
-// Get unique categories
 const categories = ["All", ...new Set(products.map(product => product.category))];
 
 export default function Index() {
@@ -85,7 +82,6 @@ export default function Index() {
   const [cart, setCart] = useState<{id: number, quantity: number}[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Filter products based on search and category
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                          product.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -93,7 +89,6 @@ export default function Index() {
     return matchesSearch && matchesCategory;
   });
 
-  // Cart functions
   const addToCart = (productId: number) => {
     setCart(prev => {
       const existingItem = prev.find(item => item.id === productId);
@@ -131,7 +126,6 @@ export default function Index() {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -155,7 +149,6 @@ export default function Index() {
     <div className="min-h-screen bg-secondary/40">
       <MainNav />
       
-      {/* Hero Section */}
       <motion.div 
         className="orange-gradient text-white py-16 px-6 text-center"
         initial={{ opacity: 0, y: -20 }}
@@ -168,7 +161,7 @@ export default function Index() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          Welcome to Edutou Grocery
+          Welcome to Edutou Basket
         </motion.h1>
         <motion.p 
           className="text-lg md:text-xl max-w-2xl mx-auto"
@@ -180,7 +173,6 @@ export default function Index() {
         </motion.p>
       </motion.div>
 
-      {/* Search and Filter Section */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div className="relative flex-1 max-w-xl">
@@ -219,7 +211,6 @@ export default function Index() {
               )}
             </Button>
 
-            {/* Cart Dropdown */}
             {isCartOpen && (
               <motion.div 
                 className="absolute right-0 top-full mt-2 w-80 bg-white rounded-lg shadow-lg z-50 p-4"
@@ -295,7 +286,6 @@ export default function Index() {
           </div>
         </div>
 
-        {/* Products Grid */}
         <motion.div 
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
           variants={containerVariants}
@@ -339,12 +329,11 @@ export default function Index() {
         )}
       </div>
       
-      {/* Footer */}
       <footer className="bg-foreground text-background py-12 mt-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Edutou Grocery</h3>
+              <h3 className="text-xl font-bold mb-4">Edutou Basket</h3>
               <p className="text-background/80">
                 Your local grocery store offering fresh and organic products.
               </p>
@@ -367,7 +356,7 @@ export default function Index() {
             </div>
           </div>
           <div className="border-t border-background/20 mt-8 pt-8 text-center text-background/60">
-            <p>&copy; {new Date().getFullYear()} Edutou Grocery. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Edutou Basket. All rights reserved.</p>
           </div>
         </div>
       </footer>
